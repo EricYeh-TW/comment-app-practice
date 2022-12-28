@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
+import imgUrl from './img/test.jpg';
 
 const Container = styled.div`
   display: flex;
@@ -19,6 +20,16 @@ const Container = styled.div`
     &:hover {
       background-color: green;
     }
+  }
+`;
+
+const TestImage = styled.div`
+  img {
+    width: 500px;
+    height: 500px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
   }
 `;
 
@@ -48,6 +59,9 @@ class Test extends Component {
           <div className="item">item</div>
           <div className="item">item</div>
         </Container>
+        <TestImage>
+          <img src={imgUrl} alt="test" />
+        </TestImage>
       </div>
     );
   }
