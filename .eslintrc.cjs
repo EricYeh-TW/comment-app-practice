@@ -11,6 +11,6 @@ module.exports = {
   },
   plugins: ['react'],
   rules: {
-    'linebreak-style': ['error', 'windows'],
+    'linebreak-style': [0, 'error', 'window'],
   },
 };
