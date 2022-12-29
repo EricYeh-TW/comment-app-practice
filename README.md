@@ -3,10 +3,10 @@
 ## Task List
 
 - [ ] task1
-  - [ ] 新建 components、四個檔案 CommentApp、CommentInput、CommentList、Comment
-  - [ ] 修改 CommentApp 納入 Input、List
-  - [ ] Input、List 各放一段文字
-  - [ ] 修改 App 樣式
+  - [x] 新建 components、四個檔案 CommentApp、CommentInput、CommentList、Comment
+  - [x] 修改 CommentApp 納入 Input、List
+  - [x] Input、List 各放一段文字
+  - [x] 修改 App 樣式
 - [ ] task2
   - [ ] 修改 Input 結構與樣式
   - [ ] 新增 username、content 狀態
