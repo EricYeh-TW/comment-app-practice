@@ -11,11 +11,11 @@
 
 ### task2
 
-- [ ] 修改 Input 結構與樣式
-- [ ] 新增 username、content 狀態
-- [ ] 監聽 onChange 並且處理讓文字內容顯現
-- [ ] 傳遞資料給父組件，建立 onSubmit 方法並且讓父組件的 handleSubmit 可以 log 資料
-- [ ] submit 完內容欄要清空，username 不用
+- [x] 修改 Input 結構與樣式
+- [x] 新增 username、content 狀態
+- [x] 監聽 onChange 並且處理讓文字內容顯現
+- [x] 傳遞資料給父組件，建立 onSubmit 方法並且讓父組件的 handleSubmit 可以 log 資料
+- [x] submit 完內容欄要清空，username 不用
 
 ### task3
 

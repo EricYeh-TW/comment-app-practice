@@ -12,5 +12,6 @@ module.exports = {
   plugins: ['react'],
   rules: {
     'linebreak-style': [0, 'error', 'window'],
+    'react/static-property-placement': ['enabled'],
   },
 };

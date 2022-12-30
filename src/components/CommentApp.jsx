@@ -1,32 +1,26 @@
 import React, { Component } from 'react';
-import styled, { createGlobalStyle } from 'styled-components';
 import CommentInput from './CommentInput';
 import CommentList from './CommentList';
-
-const GlobalStyle = createGlobalStyle`
-  body {
-  margin: 0;
-  padding: 0;
-  font-family: sans-serif;
-  background-color: #b4c6cb;
-}
-`;
-
-const Wrapper = styled.div`
-  width: 500px;
-  margin: 10px auto;
-  font-size: 14px;
-  background-color: #fff;
-  border: 1px solid #f1f1f1;
-  padding: 20px;
-`;
+import GlobalStyle from '../layout/GlobalStyle';
+import Wrapper from '../layout/CommentApp';
 
 class CommentApp extends Component {
+  constructor() {
+    super();
+    this.state = {
+      comments: [],
+    };
+  }
+
+  handleCommentSubmit(comment) {
+    console.log(comment);
+  }
+
   render() {
     return (
       <Wrapper>
         <GlobalStyle />
-        <CommentInput />
+        <CommentInput onSubmit={this.handleCommentSubmit.bind(this)} />
         <CommentList />
       </Wrapper>
     );
