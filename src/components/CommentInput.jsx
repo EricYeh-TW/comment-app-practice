@@ -3,12 +3,8 @@ import PropTypes from 'prop-types';
 import StyleInput from '../layout/CommentInput';
 
 class CommentInput extends Component {
-  static defaultProps = {
-    onSubmit: null,
-  };
-
   static propTypes = {
-    onSubmit: PropTypes.func,
+    onSubmit: PropTypes.func.isRequired,
   };
 
   constructor(props) {
