@@ -19,8 +19,8 @@
 
 ### task3
 
-- [ ] 修改 List 結構，並建立假留言陣列，傳給 Comment
-- [ ] 修改 Comment 結構，讓他正常渲染留言
+- [x] 修改 List 結構，並建立假留言陣列，傳給 Comment
+- [x] 修改 Comment 結構，讓他正常渲染留言
 - [ ] 刪除測試數據，改由 App 傳進來的數據
 - [ ] List 建立留言的 defaultProps
 - [ ] 修改 App 的 handleSubmit 讓他可以按下後顯示留言
