@@ -21,10 +21,10 @@
 
 - [x] 修改 List 結構，並建立假留言陣列，傳給 Comment
 - [x] 修改 Comment 結構，讓他正常渲染留言
-- [ ] 刪除測試數據，改由 App 傳進來的數據
-- [ ] List 建立留言的 defaultProps
-- [ ] 修改 App 的 handleSubmit 讓他可以按下後顯示留言
-- [ ] 加入檢查如果有欄位沒輸入就跳 alert
+- [x] 刪除測試數據，改由 App 傳進來的數據
+- [x] List 建立留言的 defaultProps
+- [x] 修改 App 的 handleSubmit 讓他可以按下後顯示留言
+- [x] 加入檢查如果有欄位沒輸入就跳 alert
 
 ### task4
 
@@ -59,7 +59,6 @@
 
 - [ ] 依是否依賴 localStorage 來區分 dumb、smart 組件，將 dumb 組件放到 components 資料夾
 - [ ] 將 Input 中關於 localStorage 的代碼重構，將邏輯全部改由 props 取的數據
-- [ ]
 
 ### task9
 
