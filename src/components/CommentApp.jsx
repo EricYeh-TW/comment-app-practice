@@ -13,15 +13,23 @@ class CommentApp extends Component {
   }
 
   handleCommentSubmit(comment) {
-    console.log(comment);
+    let comments = this.state.comments;
+    this.setState(
+      {
+        comments: [...comments, comment],
+      },
+      () => console.log(this.state.comments),
+    );
   }
 
   render() {
+    const { comments } = this.state;
+
     return (
       <Wrapper>
         <GlobalStyle />
         <CommentInput onSubmit={this.handleCommentSubmit.bind(this)} />
-        <CommentList />
+        <CommentList comments={comments} />
       </Wrapper>
     );
   }

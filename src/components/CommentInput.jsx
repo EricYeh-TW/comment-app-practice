@@ -31,6 +31,10 @@ class CommentInput extends Component {
     const { onSubmit } = this.props;
     const comment = this.state;
 
+    if (comment.username === '' || comment.content === '') {
+      alert('請輸入用戶名稱及內容');
+      return;
+    }
     if (onSubmit) onSubmit(comment);
 
     this.setState({
