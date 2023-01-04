@@ -12,11 +12,26 @@ class CommentApp extends Component {
     };
   }
 
+  componentDidMount() {
+    this._loadComments();
+  }
+
   handleCommentSubmit = (comment) => {
     const { comments } = this.state;
-    this.setState({
-      comments: [...comments, comment],
-    });
+    comments.push(comment);
+    this.setState({ comments });
+    this._saveComments(comments);
+  };
+
+  _saveComments = (comments) => {
+    localStorage.setItem('comments', JSON.stringify(comments));
+  };
+
+  _loadComments = () => {
+    if (localStorage.getItem('comments')) {
+      const comments = localStorage.getItem('comments');
+      this.setState({ comments: JSON.parse(comments) });
+    }
   };
 
   render() {
