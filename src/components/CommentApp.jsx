@@ -12,15 +12,12 @@ class CommentApp extends Component {
     };
   }
 
-  handleCommentSubmit(comment) {
-    let comments = this.state.comments;
-    this.setState(
-      {
-        comments: [...comments, comment],
-      },
-      () => console.log(this.state.comments),
-    );
-  }
+  handleCommentSubmit = (comment) => {
+    const { comments } = this.state;
+    this.setState({
+      comments: [...comments, comment],
+    });
+  };
 
   render() {
     const { comments } = this.state;
@@ -28,7 +25,7 @@ class CommentApp extends Component {
     return (
       <Wrapper>
         <GlobalStyle />
-        <CommentInput onSubmit={this.handleCommentSubmit.bind(this)} />
+        <CommentInput onSubmit={this.handleCommentSubmit} />
         <CommentList comments={comments} />
       </Wrapper>
     );

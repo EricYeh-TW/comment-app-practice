@@ -15,7 +15,11 @@ class CommentInput extends Component {
     };
   }
 
-  handleInputChange(e) {
+  componentDidMount() {
+    this._loadUserName();
+  }
+
+  handleInputChange = (e) => {
     if (e.target.nodeName === 'INPUT') {
       this.setState({
         username: e.target.value,
@@ -25,9 +29,9 @@ class CommentInput extends Component {
         content: e.target.value,
       });
     }
-  }
+  };
 
-  handleSubmit() {
+  handleSubmit = () => {
     const { onSubmit } = this.props;
     const comment = this.state;
 
@@ -40,7 +44,18 @@ class CommentInput extends Component {
     this.setState({
       content: '',
     });
-  }
+  };
+
+  _saveUserName = (username) => {
+    localStorage.setItem('username', username);
+  };
+
+  _loadUserName = () => {
+    if (localStorage.getItem('username')) {
+      const username = localStorage.getItem('username');
+      this.setState({ username });
+    }
+  };
 
   render() {
     const { username, content } = this.state;
@@ -50,17 +65,21 @@ class CommentInput extends Component {
         <div className="comment-field">
           <span className="comment-field-name">用戶名稱:</span>
           <div className="comment-field-input">
-            <input onChange={this.handleInputChange.bind(this)} value={username} />
+            <input
+              onChange={this.handleInputChange}
+              onBlur={() => this._saveUserName(username)}
+              value={username}
+            />
           </div>
         </div>
         <div className="comment-field">
           <span className="comment-field-name">評論內容:</span>
           <div className="comment-field-input">
-            <textarea onChange={this.handleInputChange.bind(this)} value={content} />
+            <textarea onChange={this.handleInputChange} value={content} />
           </div>
         </div>
         <div className="comment-field-button">
-          <button type="submit" onClick={this.handleSubmit.bind(this)}>
+          <button type="submit" onClick={this.handleSubmit}>
             Submit
           </button>
         </div>
