@@ -34,10 +34,10 @@
 
 ### task5
 
-- [ ] App 建立\_saveComments、\_loadComments 方法
-- [ ] 留言儲存至 localStorage
-- [ ] 顯示評論發布的時間，submit 時多帶一個時間戳
-- [ ] Comment 新增 timeString 狀態並且新增\_updateTimeString 方法五秒更新一次
+- [x] App 建立\_saveComments、\_loadComments 方法
+- [x] 留言儲存至 localStorage
+- [x] 顯示評論發布的時間，submit 時多帶一個時間戳
+- [x] Comment 新增 timeString 狀態並且新增\_updateTimeString 方法五秒更新一次
 
 ### task6
 

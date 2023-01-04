@@ -13,6 +13,7 @@ class CommentList extends Component {
       PropTypes.shape({
         username: PropTypes.string,
         content: PropTypes.string,
+        time: PropTypes.number,
       }),
     ),
   };
