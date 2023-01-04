@@ -12,6 +12,7 @@ module.exports = {
   plugins: ['react'],
   rules: {
     'linebreak-style': [0, 'error', 'window'],
-    'react/static-property-placement': ['enabled'],
+    'react/static-property-placement': ['error', 'static public field'],
+    'no-underscore-dangle': ['allow'],
   },
 };

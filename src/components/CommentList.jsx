@@ -9,20 +9,16 @@ class CommentList extends Component {
   };
 
   static propTypes = {
-    comments: PropTypes.array,
+    comments: PropTypes.arrayOf(
+      PropTypes.shape({
+        username: PropTypes.string,
+        content: PropTypes.string,
+      }),
+    ),
   };
 
-  constructor() {
-    super();
-  }
-
   render() {
-    // let comments = [
-    //   { username: 'test1', content: 'test1' },
-    //   { username: 'test2', content: 'test2' },
-    //   { username: 'test3', content: 'test3' },
-    // ];
-    const comments = this.props.comments;
+    const { comments } = this.props;
 
     return (
       <StyleList>

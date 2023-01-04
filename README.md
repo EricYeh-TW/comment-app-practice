@@ -28,9 +28,9 @@
 
 ### task4
 
-- [ ] Input 建立\_saveUserName、\_loadUserName 方法
-- [ ] username 儲存至 localStorage
-- [ ] 從這裡開始每個組件之間傳遞數據都需要加上 PropsType 檢查
+- [x] Input 建立\_saveUserName、\_loadUserName 方法
+- [x] username 儲存至 localStorage
+- [x] 從這裡開始每個組件之間傳遞數據都需要加上 PropsType 檢查
 
 ### task5
 
