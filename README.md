@@ -41,13 +41,13 @@
 
 ### task6
 
-- [ ] Comment 新增刪除按鈕
-- [ ] Comment 新增 handleDeleteComment 方法將被刪除的留言的 index 傳給 List
-- [ ] 修改 List 傳給 Comment 的數據，新增 onDeleteComment 與 index 傳給 Comment
-- [ ] List 新增 handleDeleteComment 方法繼續將被刪除留言的 index 帶給 App
-- [ ] App 新增 handleDeleteComment 方法並且能夠 log 出被刪除留言的 index
-- [ ] 修改 App 的 handleDeleteComment 並且使用 splice()刪除留言，將改變儲存至 localStorage
-- [ ] Comment 新增 commentWillUnmount 來停止已銷毀留言的計時
+- [x] Comment 新增刪除按鈕
+- [x] Comment 新增 handleDeleteComment 方法將被刪除的留言的 index 傳給 List
+- [x] 修改 List 傳給 Comment 的數據，新增 onDeleteComment 與 index 傳給 Comment
+- [x] List 新增 handleDeleteComment 方法繼續將被刪除留言的 index 帶給 App
+- [x] App 新增 handleDeleteComment 方法並且能夠 log 出被刪除留言的 index
+- [x] 修改 App 的 handleDeleteComment 並且使用 splice()刪除留言，將改變儲存至 localStorage
+- [x] Comment 新增 commentWillUnmount 來停止已銷毀留言的計時
 
 ### task7
 

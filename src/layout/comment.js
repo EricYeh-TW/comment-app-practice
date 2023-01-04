@@ -8,8 +8,19 @@ const StyleComment = styled.div`
   padding-bottom: 10px;
   min-height: 50px;
 
+  &:hover {
+    .comment-delete {
+      display: block;
+    }
+  }
+
   .comment-user {
     flex-shrink: 0;
+  }
+
+  span {
+    color: #00a3cf;
+    font-style: italic;
   }
 
   .comment-createdtime {
@@ -21,9 +32,15 @@ const StyleComment = styled.div`
     font-size: smaller;
   }
 
-  span {
-    color: #00a3cf;
-    font-style: italic;
+  .comment-delete {
+    color: red;
+    font-style: normal;
+    position: absolute;
+    right: 0;
+    top: 0;
+    cursor: pointer;
+    display: none;
+    transition: all 0.2s ease-in-out;
   }
 
   p {
