@@ -34,6 +34,13 @@ class CommentApp extends Component {
     }
   };
 
+  handleDeleteComment = (index) => {
+    const { comments } = this.state;
+    const newComments = [...comments.splice(0, index), ...comments.splice(index + 1)];
+    this.setState({ comments: newComments });
+    this._saveComments(newComments);
+  };
+
   render() {
     const { comments } = this.state;
 
@@ -41,7 +48,10 @@ class CommentApp extends Component {
       <Wrapper>
         <GlobalStyle />
         <CommentInput onSubmit={this.handleCommentSubmit} />
-        <CommentList comments={comments} />
+        <CommentList
+          comments={comments}
+          onDeleteComment={(index) => this.handleDeleteComment(index)}
+        />
       </Wrapper>
     );
   }

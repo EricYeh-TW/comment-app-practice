@@ -13,6 +13,8 @@ class Comment extends Component {
       content: PropTypes.string,
       time: PropTypes.number,
     }),
+    index: PropTypes.any,
+    onDeleteComment: PropTypes.func,
   };
 
   constructor() {
@@ -27,6 +29,10 @@ class Comment extends Component {
     this._timer = setInterval(() => this._updateTimeString(), 5000);
   }
 
+  componentWillUnmount() {
+    clearInterval(this._timer);
+  }
+
   _updateTimeString = () => {
     const { comment } = this.props;
     const newTime = Date.now();
@@ -35,6 +41,11 @@ class Comment extends Component {
       timeString:
         duration > 60 ? `${Math.round(duration / 60)}分鐘前` : `${Math.max(duration, 1)}秒前`,
     });
+  };
+
+  handleDeleteComment = () => {
+    const { onDeleteComment, index } = this.props;
+    if (onDeleteComment) onDeleteComment(index);
   };
 
   render() {
@@ -47,6 +58,9 @@ class Comment extends Component {
         </div>
         <p>{this.props.comment.content}</p>
         <span className="comment-createdtime">{timeString}</span>
+        <span className="comment-delete" onClick={this.handleDeleteComment}>
+          刪除
+        </span>
       </StyleComment>
     );
   }

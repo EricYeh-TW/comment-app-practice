@@ -16,6 +16,12 @@ class CommentList extends Component {
         time: PropTypes.number,
       }),
     ),
+    onDeleteComment: PropTypes.func,
+  };
+
+  handleDeleteComment = (index) => {
+    const { onDeleteComment } = this.props;
+    if (onDeleteComment) onDeleteComment(index);
   };
 
   render() {
@@ -24,7 +30,12 @@ class CommentList extends Component {
     return (
       <StyleList>
         {comments.map((comment, i) => (
-          <Comment comment={comment} key={i} />
+          <Comment
+            comment={comment}
+            key={i}
+            index={i}
+            onDeleteComment={(index) => this.handleDeleteComment(index)}
+          />
         ))}
       </StyleList>
     );
