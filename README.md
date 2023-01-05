@@ -51,9 +51,9 @@
 
 ### task7
 
-- [ ] 新增 reducers、containers 資料夾、新建 comment.js
-- [ ] 引入 Redux react-redux
-- [ ] 建立 reducer、action type、action creator
+- [x] 新增 reducers、containers 資料夾、新建 comment.js
+- [x] 引入 Redux react-redux
+- [x] 建立 reducer、action type、action creator
 
 ### task8
 

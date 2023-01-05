@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import CommentInput from './CommentInput';
 import CommentList from './CommentList';
-import GlobalStyle from '../layout/GlobalStyle';
-import Wrapper from '../layout/CommentApp';
+import GlobalStyle from '../styles/GlobalStyle';
+import Wrapper from '../styles/CommentApp';
 
 class CommentApp extends Component {
   constructor() {

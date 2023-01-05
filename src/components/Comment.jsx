@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import StyleComment from '../layout/Comment';
+import StyleComment from '../styles/Comment';
 import PropTypes from 'prop-types';
 
 class Comment extends Component {
