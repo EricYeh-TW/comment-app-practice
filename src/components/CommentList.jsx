@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Comment from './Comment';
-import StyleList from '../layout/CommentList';
+import StyleList from '../styles/CommentList';
 
 class CommentList extends Component {
   static defaultProps = {

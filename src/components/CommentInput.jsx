@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import StyleInput from '../layout/CommentInput';
+import StyleInput from '../styles/CommentInput';
 
 class CommentInput extends Component {
   static propTypes = {
