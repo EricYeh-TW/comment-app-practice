@@ -1,60 +1,41 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
 import CommentInput from './CommentInput';
 import CommentList from './CommentList';
 import GlobalStyle from '../styles/GlobalStyle';
 import Wrapper from '../styles/CommentApp';
 
-class CommentApp extends Component {
-  constructor() {
-    super();
-    this.state = {
-      comments: [],
-    };
-  }
+const CommentApp = () => {
+  const [comments, setComments] = useState([]);
+  useEffect(() => _loadComments(), []);
 
-  componentDidMount() {
-    this._loadComments();
-  }
-
-  handleCommentSubmit = (comment) => {
-    const { comments } = this.state;
-    comments.push(comment);
-    this.setState({ comments });
-    this._saveComments(comments);
-  };
-
-  _saveComments = (comments) => {
+  const _saveComments = (comments) => {
     localStorage.setItem('comments', JSON.stringify(comments));
   };
 
-  _loadComments = () => {
-    if (localStorage.getItem('comments')) {
-      const comments = localStorage.getItem('comments');
-      this.setState({ comments: JSON.parse(comments) });
-    }
+  const _loadComments = () => {
+    const loadComments = localStorage.getItem('comments');
+    if (loadComments) setComments(JSON.parse(loadComments));
   };
 
-  handleDeleteComment = (index) => {
-    const { comments } = this.state;
-    const newComments = [...comments.splice(0, index), ...comments.splice(index + 1)];
-    this.setState({ comments: newComments });
-    this._saveComments(newComments);
+  const handleCommentSubmit = (comment) => {
+    const newComments = [...comments, comment];
+    _saveComments(newComments);
+    setComments(newComments);
   };
 
-  render() {
-    const { comments } = this.state;
+  const handleDeleteComment = (index) => {
+    const newComments = [...comments.slice(0, index), ...comments.slice(index + 1)];
+    _saveComments(newComments);
+    setComments(newComments);
+  };
 
-    return (
-      <Wrapper>
-        <GlobalStyle />
-        <CommentInput onSubmit={this.handleCommentSubmit} />
-        <CommentList
-          comments={comments}
-          onDeleteComment={(index) => this.handleDeleteComment(index)}
-        />
-      </Wrapper>
-    );
-  }
-}
+  return (
+    <Wrapper>
+      <GlobalStyle />
+      <CommentInput onSubmit={(comment) => handleCommentSubmit(comment)} />
+      <CommentList comments={comments} onDeleteComment={(index) => handleDeleteComment(index)} />
+    </Wrapper>
+  );
+};
 
 export default CommentApp;

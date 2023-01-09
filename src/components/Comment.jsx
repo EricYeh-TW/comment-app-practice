@@ -1,69 +1,55 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
 import StyleComment from '../styles/Comment';
 import PropTypes from 'prop-types';
 
-class Comment extends Component {
-  static defaultProps = {
-    comment: {},
-  };
+const Comment = (props) => {
+  const { comment, index, onDeleteComment } = props;
+  const [timeString, setTimeString] = useState('');
 
-  static propTypes = {
-    comment: PropTypes.shape({
-      username: PropTypes.string,
-      content: PropTypes.string,
-      time: PropTypes.number,
-    }),
-    index: PropTypes.any,
-    onDeleteComment: PropTypes.func,
-  };
-
-  constructor() {
-    super();
-    this.state = {
-      timeString: '',
+  useEffect(() => {
+    _updateTimeString();
+    const _timer = setInterval(_updateTimeString, 5000);
+    return function cleanup() {
+      clearInterval(_timer);
     };
-  }
+  }, []);
 
-  componentDidMount() {
-    this._updateTimeString();
-    this._timer = setInterval(() => this._updateTimeString(), 5000);
-  }
-
-  componentWillUnmount() {
-    clearInterval(this._timer);
-  }
-
-  _updateTimeString = () => {
-    const { comment } = this.props;
+  const _updateTimeString = () => {
     const newTime = Date.now();
     const duration = Math.floor((newTime - comment.time) / 1000);
-    this.setState({
-      timeString:
-        duration > 60 ? `${Math.round(duration / 60)}分鐘前` : `${Math.max(duration, 1)}秒前`,
-    });
+    setTimeString(duration > 60 ? `${Math.round(duration / 60)}分鐘前` : `${Math.max(duration, 1)}秒前`);
   };
 
-  handleDeleteComment = () => {
-    const { onDeleteComment, index } = this.props;
+  const handleDeleteComment = () => {
     if (onDeleteComment) onDeleteComment(index);
   };
 
-  render() {
-    const { timeString } = this.state;
+  return (
+    <StyleComment>
+      <div className="comment-user">
+        <span>{comment.username} </span>:
+      </div>
+      <p>{comment.content}</p>
+      <span className="comment-createdtime">{timeString}</span>
+      <span className="comment-delete" onClick={() => handleDeleteComment()}>
+        刪除
+      </span>
+    </StyleComment>
+  );
+};
 
-    return (
-      <StyleComment>
-        <div className="comment-user">
-          <span>{this.props.comment.username} </span>:
-        </div>
-        <p>{this.props.comment.content}</p>
-        <span className="comment-createdtime">{timeString}</span>
-        <span className="comment-delete" onClick={this.handleDeleteComment}>
-          刪除
-        </span>
-      </StyleComment>
-    );
-  }
-}
+Comment.defaultProps = {
+  comment: {},
+};
+
+Comment.propTypes = {
+  comment: PropTypes.shape({
+    username: PropTypes.string,
+    content: PropTypes.string,
+    time: PropTypes.number,
+  }),
+  index: PropTypes.any,
+  onDeleteComment: PropTypes.func,
+};
 
 export default Comment;
