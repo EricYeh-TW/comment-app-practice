@@ -1,91 +1,55 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import StyleInput from '../styles/CommentInput';
 
-class CommentInput extends Component {
-  static propTypes = {
-    onSubmit: PropTypes.func.isRequired,
-  };
+const CommentInput = (props) => {
+  const { onSubmit } = props;
+  const [username, setUsername] = useState('');
+  const [content, setContent] = useState('');
+  useEffect(() => _loadUserName(), []);
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      username: '',
-      content: '',
-    };
-  }
-
-  componentDidMount() {
-    this._loadUserName();
-  }
-
-  handleInputChange = (e) => {
-    if (e.target.nodeName === 'INPUT') {
-      this.setState({
-        username: e.target.value,
-      });
-    } else {
-      this.setState({
-        content: e.target.value,
-      });
-    }
-  };
-
-  handleSubmit = () => {
-    const { onSubmit } = this.props;
-    const comment = { ...this.state, time: Date.now() };
-
-    if (comment.username === '' || comment.content === '') {
-      alert('請輸入用戶名稱及內容');
-      return;
-    }
-    if (onSubmit) onSubmit(comment);
-
-    this.setState({
-      content: '',
-    });
-  };
-
-  _saveUserName = (username) => {
+  const _saveUserName = () => {
     localStorage.setItem('username', username);
   };
 
-  _loadUserName = () => {
-    if (localStorage.getItem('username')) {
-      const username = localStorage.getItem('username');
-      this.setState({ username });
-    }
+  const _loadUserName = () => {
+    const username = localStorage.getItem('username');
+    if (username) setUsername(username);
   };
 
-  render() {
-    const { username, content } = this.state;
+  const handleSubmit = () => {
+    const comment = { username, content, time: Date.now() };
 
-    return (
-      <StyleInput>
-        <div className="comment-field">
-          <span className="comment-field-name">用戶名稱:</span>
-          <div className="comment-field-input">
-            <input
-              onChange={this.handleInputChange}
-              onBlur={() => this._saveUserName(username)}
-              value={username}
-            />
-          </div>
+    if (comment.username === '' || comment.content === '') return alert('請輸入用戶名稱及內容');
+    if (onSubmit) onSubmit(comment);
+    setContent('');
+  };
+
+  return (
+    <StyleInput>
+      <div className="comment-field">
+        <span className="comment-field-name">用戶名稱:</span>
+        <div className="comment-field-input">
+          <input onChange={(e) => setUsername(e.target.value)} onBlur={() => _saveUserName()} value={username} />
         </div>
-        <div className="comment-field">
-          <span className="comment-field-name">評論內容:</span>
-          <div className="comment-field-input">
-            <textarea onChange={this.handleInputChange} value={content} />
-          </div>
+      </div>
+      <div className="comment-field">
+        <span className="comment-field-name">評論內容:</span>
+        <div className="comment-field-input">
+          <textarea onChange={(e) => setContent(e.target.value)} value={content} />
         </div>
-        <div className="comment-field-button">
-          <button type="submit" onClick={this.handleSubmit}>
-            Submit
-          </button>
-        </div>
-      </StyleInput>
-    );
-  }
-}
+      </div>
+      <div className="comment-field-button">
+        <button type="submit" onClick={() => handleSubmit()}>
+          Submit
+        </button>
+      </div>
+    </StyleInput>
+  );
+};
+
+CommentInput.propTypes = {
+  onSubmit: PropTypes.func.isRequired,
+};
 
 export default CommentInput;
