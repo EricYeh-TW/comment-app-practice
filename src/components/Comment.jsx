@@ -9,7 +9,7 @@ const Comment = (props) => {
   useEffect(() => {
     _updateTimeString();
     const _timer = setInterval(_updateTimeString, 5000);
-    return function cleanup() {
+    return () => {
       clearInterval(_timer);
     };
   }, []);
