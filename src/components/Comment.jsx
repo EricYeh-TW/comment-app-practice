@@ -1,10 +1,14 @@
 import React, { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import StyleComment from '../styles/Comment';
 import PropTypes from 'prop-types';
+import { deleteComment } from '../actions/commentsAction';
 
 const Comment = (props) => {
-  const { comment, index, onDeleteComment } = props;
+  const { comment, index } = props;
   const [timeString, setTimeString] = useState('');
+  const comments = useSelector((state) => state.commentsReducer.comments);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     _updateTimeString();
@@ -21,7 +25,9 @@ const Comment = (props) => {
   };
 
   const handleDeleteComment = () => {
-    if (onDeleteComment) onDeleteComment(index);
+    const newComments = [...comments.slice(0, index), ...comments.slice(index + 1)];
+    localStorage.setItem('comments', JSON.stringify(newComments));
+    dispatch(deleteComment(index));
   };
 
   return (
@@ -31,7 +37,7 @@ const Comment = (props) => {
       </div>
       <p>{comment.content}</p>
       <span className="comment-createdtime">{timeString}</span>
-      <span className="comment-delete" onClick={() => handleDeleteComment()}>
+      <span className="comment-delete" onClick={handleDeleteComment}>
         刪除
       </span>
     </StyleComment>

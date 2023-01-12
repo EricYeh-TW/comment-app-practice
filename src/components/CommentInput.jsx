@@ -2,10 +2,10 @@ import React from 'react';
 import StyleInput from '../styles/CommentInput';
 import { useChangeUsername, useChangeContent, useSubmit } from '../containers/CommentInput';
 
-const CommentInput = (props) => {
+const CommentInput = () => {
   const [username, handleUserNameChange] = useChangeUsername();
   const [content, handleContentChange] = useChangeContent();
-  const [handleSubmit] = useSubmit(props);
+  const [handleSubmit] = useSubmit();
 
   return (
     <StyleInput>

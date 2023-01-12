@@ -1,40 +1,37 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import CommentInput from './CommentInput';
 import CommentList from './CommentList';
-import GlobalStyle from '../styles/GlobalStyle';
-import Wrapper from '../styles/CommentApp';
 
 const CommentApp = () => {
-  const [comments, setComments] = useState([]);
-  useEffect(() => _loadComments(), []);
+  // const [comments, setComments] = useState([]);
+  // useEffect(() => _loadComments(), []);
 
-  const _saveComments = (comments) => {
-    localStorage.setItem('comments', JSON.stringify(comments));
-  };
+  // const _saveComments = (comments) => {
+  //   localStorage.setItem('comments', JSON.stringify(comments));
+  // };
 
-  const _loadComments = () => {
-    const loadComments = localStorage.getItem('comments');
-    if (loadComments) setComments(JSON.parse(loadComments));
-  };
+  // const _loadComments = () => {
+  //   const loadComments = localStorage.getItem('comments');
+  //   if (loadComments) setComments(JSON.parse(loadComments));
+  // };
 
-  const handleCommentSubmit = (comment) => {
-    const newComments = [...comments, comment];
-    _saveComments(newComments);
-    setComments(newComments);
-  };
+  // const handleCommentSubmit = (comment) => {
+  //   const newComments = [...comments, comment];
+  //   _saveComments(newComments);
+  //   setComments(newComments);
+  // };
 
-  const handleDeleteComment = (index) => {
-    const newComments = [...comments.slice(0, index), ...comments.slice(index + 1)];
-    _saveComments(newComments);
-    setComments(newComments);
-  };
+  // const handleDeleteComment = (index) => {
+  //   const newComments = [...comments.slice(0, index), ...comments.slice(index + 1)];
+  //   _saveComments(newComments);
+  //   setComments(newComments);
+  // };
 
   return (
-    <Wrapper>
-      <GlobalStyle />
-      <CommentInput onSubmit={(comment) => handleCommentSubmit(comment)} />
-      <CommentList comments={comments} onDeleteComment={(index) => handleDeleteComment(index)} />
-    </Wrapper>
+    <div>
+      <CommentInput />
+      <CommentList />
+    </div>
   );
 };
 

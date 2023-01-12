@@ -1,37 +1,26 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
+import { useSelector, useDispatch } from 'react-redux';
 import Comment from './Comment';
 import StyleList from '../styles/CommentList';
+import { initComments } from '../actions/commentsAction';
 
-const CommentList = (props) => {
-  const { comments, onDeleteComment } = props;
+const CommentList = () => {
+  const comments = useSelector((state) => state.commentsReducer.comments);
+  const dispatch = useDispatch();
 
-  const handleDeleteComment = (index) => {
-    if (onDeleteComment) onDeleteComment(index);
-  };
+  useEffect(() => {
+    const loadComments = localStorage.getItem('comments');
+    if (loadComments) dispatch(initComments(JSON.parse(loadComments)));
+  }, []);
 
   return (
     <StyleList>
       {comments.map((comment, i) => (
-        <Comment comment={comment} key={i} index={i} onDeleteComment={(index) => handleDeleteComment(index)} />
+        <Comment comment={comment} key={i} index={i} />
       ))}
     </StyleList>
   );
-};
-
-CommentList.defaultProps = {
-  comments: [],
-};
-
-CommentList.propTypes = {
-  comments: PropTypes.arrayOf(
-    PropTypes.shape({
-      username: PropTypes.string,
-      content: PropTypes.string,
-      time: PropTypes.number,
-    }),
-  ),
-  onDeleteComment: PropTypes.func.isRequired,
 };
 
 export default CommentList;
