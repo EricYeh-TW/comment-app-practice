@@ -10,7 +10,7 @@ let comment = {
 };
 
 export const useChangeUsername = () => {
-  const username = useSelector((state) => state.commentReducer.username);
+  const username = useSelector((state) => state.inputReducer.username);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -28,7 +28,7 @@ export const useChangeUsername = () => {
 };
 
 export const useChangeContent = () => {
-  const content = useSelector((state) => state.commentReducer.content);
+  const content = useSelector((state) => state.inputReducer.content);
   const dispatch = useDispatch();
 
   const handleContentChange = (content) => {
