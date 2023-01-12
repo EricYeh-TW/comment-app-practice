@@ -40,15 +40,17 @@ export const useChangeContent = () => {
   return [content, handleContentChange];
 };
 
-export const useSubmit = (props) => {
-  const { onSubmit } = props;
+export const useSubmit = () => {
+  const comments = useSelector((state) => state.commentsReducer.comments);
   const dispatch = useDispatch();
 
   const handleSubmit = () => {
     comment = { ...comment, time: Date.now() };
+    const newComments = [...comments, comment];
 
     if (comment.username === '' || comment.content === '') return alert('請輸入用戶名稱及內容');
-    if (onSubmit) onSubmit(comment);
+    localStorage.setItem('comments', JSON.stringify(newComments));
+    dispatch(addComment(comment));
     dispatch(changeContent(''));
   };
 
