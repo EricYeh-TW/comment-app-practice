@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import StyleComment from '../styles/Comment';
 import PropTypes from 'prop-types';
-import { deleteComment } from '../actions/commentsAction';
+// import { deleteComment } from '../actions/commentsAction';
+import { deleteComment } from '../slices/commentsSlice';
 
 const Comment = (props) => {
   const { comment, index } = props;

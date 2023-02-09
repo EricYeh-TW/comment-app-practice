@@ -3,11 +3,17 @@ import PropTypes from 'prop-types';
 import { useSelector, useDispatch } from 'react-redux';
 import Comment from './Comment';
 import StyleList from '../styles/CommentList';
-import { initComments } from '../actions/commentsAction';
+// import { initComments } from '../actions/commentsAction';
+import { initComments } from '../slices/commentsSlice';
 
 const CommentList = () => {
   const comments = useSelector((state) => state.commentsReducer.comments);
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    const loadComments = localStorage.getItem('comments');
+    if (loadComments) dispatch(initComments(JSON.parse(loadComments)));
+  }, []);
 
   useEffect(() => {
     const loadComments = localStorage.getItem('comments');

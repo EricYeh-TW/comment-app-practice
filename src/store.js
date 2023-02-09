@@ -1,11 +1,21 @@
-import { createStore, combineReducers, applyMiddleware } from '@reduxjs/toolkit';
-import { createLogger } from 'redux-logger';
-import { inputReducer } from './reducers/inputReducer';
-import { commentsReducer } from './reducers/commentsReducer';
+import { configureStore, combineReducers, applyMiddleware } from '@reduxjs/toolkit';
+import logger from 'redux-logger';
+// import { inputReducer } from './reducers/inputReducer';
+// import { commentsReducer } from './reducers/commentsReducer';
+import inputReducer from './slices/inputSlice';
+import commentsReducer from './slices/commentsSlice';
 
-const logger = createLogger();
+// const logger = createLogger();
 
-const rootReducer = combineReducers({ inputReducer, commentsReducer });
-const store = createStore(rootReducer, applyMiddleware(logger));
+export default configureStore({
+  reducer: {
+    inputReducer,
+    commentsReducer,
+  },
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger),
+});
 
-export default store;
+// const rootReducer = combineReducers({ inputReducer, commentsReducer });
+// const store = createStore(rootReducer, applyMiddleware(logger));
+
+// export default store;
