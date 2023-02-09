@@ -1,8 +1,10 @@
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
-import { changeContent, changeUsername } from '../actions/inputAction';
-import { addComment } from '../actions/commentsAction';
+// import { changeContent, changeUsername } from '../actions/inputAction';
+// import { addComment } from '../actions/commentsAction';
+import { changeUsername, changeContent } from '../slices/inputSlice';
+import { addComment } from '../slices/commentsSlice';
 
 let comment = {
   username: '',
